@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <!--用来显示网头部的文字信息的标签-->
+    <title>许志奇</title>
+    <!--link标签用来链接外部资源的标签-->
+    <link rel="short icon" href="Resource/icon.png">
+
+    <link rel="stylesheet" href="ExternalStyle.css">
+    <script type="text/javascript" src="Commen.js"></script>
+    <!--head.png-->
+
+    <style>
+        .head{
+            width: 100%;
+            height: 150px;
+
+        }
+        .head img{
+            margin-left: 150px;
+            size: 50px;
+        }
+        .i_inner_div{
+            height: 100px;
+            width: 90%;
+            border: 1px solid rgb(242, 242, 242);
+            border-radius: 5px;
+            margin: 0 auto;
+        }
+        .i_inner_div div{
+            background: white;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+        .i_inner_div div span{
+            font-size: 20px;
+        }
+        input{outline: medium;background-color: transparent;border: 0}
+        .i_button_div{
+            background: rgb(67, 140, 255);
+            height: 50px;
+            width: 90%;
+            margin: 0 auto;
+            border: 1px solid;
+            margin-top: 20px;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+    </style>
+</head>
+<body>
+
+
+
+
+
+
+<section class="head">
+    <img src="Resource/head.png" alt="">
+</section>
+
+<form >
+    <div class="i_inner_div">
+        <div style="border: 1px solid rgb(242, 242, 242);">
+            <span>账号:</span>
+            <input id="account" type="text" value="admin"/>
+        </div>
+        <div>
+            <span>密码:</span>
+            <input id="password" type="password" value="admin"/>
+        </div>
+    </div>
+
+
+    <div class="i_button_div">
+
+        <input id="btn" type="button" value="登录" />
+    </div>
+
+    <script>
+
+        // function sum(a,b) {
+        //     var c = a + b;
+        //     alert("函数调用");
+        //     return c;
+        // }
+        // // var d = sum(1,2);
+        // var sum1 = function (a,b) {
+        //     var c = a+b;
+        //     alert("123");
+        //     return c;
+        //
+        // }
+
+
+        var btn = document.getElementById("btn");
+        btn.onclick = function (a,b) {
+            var account = encodeURIComponent(document.getElementById("account").value);
+            var pwd = encodeURIComponent(document.getElementById("password").value);
+
+           var par3 =  "username="+ account + "&pwd=" + pwd;
+            requestData('post','login',par3,function (str) {
+               if(str == "登录成功"){
+                   location.href = "DropletService.html";
+               }else{
+                   alert(str);
+               }
+
+           });
+
+            }
+
+        // method("get","aboutus");
+        //
+        // function method(a,b) {
+        //
+        //     var btn = document.getElementById("btn");
+        //     btn.onclick = function (a,b) {
+        //         var account = encodeURIComponent(document.getElementById("account").value);
+        //         var pwd = encodeURIComponent(document.getElementById("password").value);
+        //         //第一步创建一个请求对象，去服务端要数据，接收服务端数据
+        //         var xhr = new XMLHttpRequest();
+        //         //第二部 与服务端建立连接方法有两种get 或 post ,去连接哪儿个服务器，用服务器的哪儿个接口
+        //         xhr.open(a,'https://mockapi.eolinker.com/2ZhGVxjacb39010e6753bd9c02ee803e6e3bfeab6e8007c/' + b );
+        //         //告诉服务器传递数据的方式是以表单的方式传递过去
+        //         xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        //         //    第三部传递参数
+        //         xhr.send("username="+ account + "&pwd=" + pwd);
+        //         //    第四步 接收数据
+        //         xhr.onreadystatechange= function () {
+        //             //xhr.readyState == 4 数据请求完成  xhr.status == 200 数据成功返回
+        //             // if(xhr.readyState == 4 && xhr.status == 200){
+        //             //responseText 包含了服务端返回的数据
+        //             console.log(xhr.responseText);
+        //             // var h = Json.object(xhr.responseText);
+        //             // console.log(h.data);
+        //             // var reponseData = JSON.parse(xhr.responseText);
+        //             // if(reponseData.data == "登录成功"){
+        //             //     location.href = "DropletService.html";
+        //             // }else{
+        //             //     alert(reponseData.data);
+        //             // }
+        //             // }
+        //         }
+        //
+        // }
+
+
+        // var btn = document.getElementById("btn");
+        // btn.onclick = function (a,b) {
+        //     var account = encodeURIComponent(document.getElementById("account").value);
+        //     var pwd = encodeURIComponent(document.getElementById("password").value);
+        //     //第一步创建一个请求对象，去服务端要数据，接收服务端数据
+        //     var xhr = new XMLHttpRequest();
+        //     //第二部 与服务端建立连接方法有两种get 或 post ,去连接哪儿个服务器，用服务器的哪儿个接口
+        //     xhr.open('get','https://mockapi.eolinker.com/2ZhGVxjacb39010e6753bd9c02ee803e6e3bfeab6e8007c/aboutus');
+        //     //告诉服务器传递数据的方式是以表单的方式传递过去
+        //     xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        //     //    第三部传递参数
+        //     xhr.send("username="+ account + "&pwd=" + pwd);
+        //     //    第四步 接收数据
+        //     xhr.onreadystatechange= function () {
+        //         //xhr.readyState == 4 数据请求完成  xhr.status == 200 数据成功返回
+        //         // if(xhr.readyState == 4 && xhr.status == 200){
+        //             //responseText 包含了服务端返回的数据
+        //         console.log(xhr.responseText);
+        //         // var h = Json.object(xhr.responseText);
+        //         // console.log(h.data);
+        //            // var reponseData = JSON.parse(xhr.responseText);
+        //             // if(reponseData.data == "登录成功"){
+        //             //     location.href = "DropletService.html";
+        //             // }else{
+        //             //     alert(reponseData.data);
+        //             // }
+        //         // }
+        //     }
+
+
+
+
+
+
+
+
+    </script>
+</form>
+
+
+</body>
+</html>

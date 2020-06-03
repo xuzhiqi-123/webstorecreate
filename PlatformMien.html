@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>许志奇</title>
+    <!--用来加载外部资源-->
+    <link rel="short icon" href="Resource/icon.png">
+    <link rel="stylesheet" href="ExternalStyle.css">
+
+    <script type="text/javascript" src="Commen.js"></script>
+    <style>
+        article{
+            margin: 20px;
+
+        }
+        h3{
+            color: red;
+            font-size: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgb(255, 0, 0);
+        }
+        h4{
+            font-size: 14px;
+        }
+        p{
+            text-indent: 2em;/*首行缩进*/
+            font-size: 12px;
+            line-height: 24px;
+        }
+    </style>
+</head>
+<body>
+
+
+<header>
+    <span> 小滴服务</span>
+</header>
+<!--span 标签用来存放少量文字的标签-->
+
+<!--语义化标签:增强程序的可读性-->
+
+<!--第二部分-->
+<section class="DS_second_img">
+    <img src="Resource/banner4.png" alt="资源找不到">
+</section>
+
+
+<!--第3部分-->
+<article>
+    <h3 id="title"></h3>
+    <h4 id="subtitle"></h4>
+
+
+    <p id="info"></p>
+
+
+
+    <script>
+
+        function saaign(obj) {
+            var tatle_tag = document.getElementById("title");
+            var subTitle_tag = document.getElementById("subtitle");
+            var info_tag = document.getElementById("info");
+
+            tatle_tag.innerHTML = obj.title;
+            subTitle_tag.innerHTML = obj.subTitle;
+            info_tag.innerHTML = obj.info;
+
+        }
+
+
+
+        var obj_text = JSON.parse(window.localStorage.getItem("plaform_json"));
+
+        if(obj_text){
+           var obj = obj_text.data;
+           saaign(obj);
+        }else {
+
+
+
+            requestData('get','aboutus',"",function (obj,obj1) {
+                saaign(obj);
+                window.localStorage.setItem("plaform_json",obj1);
+            });
+        }
+
+    </script>
+
+
+</article>
+
+
+<footer>
+
+    <a href="DropletService.html">   <img src="Resource/nav10.png" alt="" > <span>小滴服务</span>  </a>
+    <a href="EnterpriseItem.html">   <img src="Resource/nav20.png" alt=""> <span>企业项目</span>   </a>
+    <a href="ServiceProcess.html">   <img src="Resource/nav30.png" alt=""> <span>服务流程</span>   </a>
+    <a href="PlatformMien.html">   <img src="Resource/nav41.png" alt=""> <span style="color: red">平台风采</span>   </a>
+    <a href="MyDroplet.html">   <img src="Resource/nav50.png" alt=""> <span  >小滴服务</span>   </a>
+
+
+</footer>
+
+
+</body>
+</html>
